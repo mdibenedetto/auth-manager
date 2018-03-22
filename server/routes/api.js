@@ -45,12 +45,38 @@ router.post('/login', (req, res) => {
                 res.status(401).send('invalid  email');
             } else if (user.password != userData.password) {
                 res.status(401).send('invalid  password');
-            }
-            else{
+            } else {
                 res.status(200).send(user);
             }
 
         })
 });
 
+router.get('/events', (req, res) => {
+    let events = [];
+    for (let i = 0; i < 50; i++) {
+        let event = {
+            _id: i + 1,
+            name: 'Auto',
+            desciption: 'Lorem ipsum',
+            date: '2018-04-20T18:25:43.511Z'
+        };
+        events.push(event);
+    }
+    res.json(events);
+});
+
+router.get('/special', (req, res) => {
+    let events = [];
+    for (let i = 0; i < 50; i++) {
+        let event = {
+            _id: i + 1,
+            name: 'Auto',
+            desciption: 'Lorem ipsum',
+            date: '2018-04-20T18:25:43.511Z'
+        };
+        events.push(event);
+    }
+    res.json(events);
+});
 module.exports = router;
