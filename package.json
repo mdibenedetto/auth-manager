@@ -1,0 +1,27 @@
+{
+  "name": "auth-manager",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "mongoose": "^5.0.11",
+    "cors": "^2.8.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start-node":"node ./server/server.js",
+    "start-ng":"cd ./ngApp && ng serve -o",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michele2014/auth-manager.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/michele2014/auth-manager/issues"
+  },
+  "homepage": "https://github.com/michele2014/auth-manager#readme"
+}
