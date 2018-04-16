@@ -26,7 +26,6 @@ export class SpecialEventsComponent implements OnInit {
                         if (err.status === 401) {
                             this._router.navigate(['/login'])
                         } else {
-                            alert('You session is not valid anymore! Please Login again.');
                             this._router.navigate(['/login'])
                         }
                     }
