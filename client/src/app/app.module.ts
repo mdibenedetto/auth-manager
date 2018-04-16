@@ -1,4 +1,3 @@
-// import { AuthGuard } from './auth.guard';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -13,7 +12,7 @@ import { SpecialEventsComponent } from './special-events/special-events.componen
 import { AuthService } from './auth.service';
 import { EventService } from './event.service';
 import { AuthGuard } from './auth.guard';
-// import { TokenInterceptorService } from './token-interceptor.service';
+import { TokenInterceptorService } from './token-interceptor.service';
 
 
 @NgModule({
@@ -30,13 +29,12 @@ import { AuthGuard } from './auth.guard';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [AuthService,AuthGuard, EventService],
-  // providers: [AuthService, AuthGuard, EventService, 
-  //   {
-  //     provide: HTTP_INTERCEPTORS,
-  //     useClass: TokenInterceptorService,
-  //     multi: true
-  //   }],
+  providers: [AuthService,AuthGuard, EventService,
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptorService,
+    multi: true
+  }], 
   bootstrap: [AppComponent]
 })
 export class AppModule { }

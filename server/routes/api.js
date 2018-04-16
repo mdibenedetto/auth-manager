@@ -6,6 +6,7 @@ const User = require('../models/user');
 
 const mongoose = require('mongoose');
 const db = 'mongodb://mike:mike@ds121349.mlab.com:21349/events-manager';
+const SECRET_KEY = 'secretKey';
 
 mongoose.connect(db, err => {
     if (err) {
@@ -15,6 +16,21 @@ mongoose.connect(db, err => {
     }
 });
 
+function verifyToken(req, res, next) {
+    if (!req.headers.authorization) {
+        return res.status(401).send('Unauthorized request!');
+    }
+    let token = req.headers.authorization.split(' ')[1];
+    if (token === 'null') {
+        return res.status(401).send('Unauthorized request!');
+    }
+    let payload = jwt.verify(token, SECRET_KEY);
+    if (!payload) {
+        return res.status(401).send('Unauthorized request!');
+    }
+    req.userId = payload.subject;
+    next();
+}
 
 router.get('/', (req, res) => {
     res.send('Hi from API route');
@@ -31,9 +47,11 @@ router.post('/register', (req, res) => {
             let payload = {
                 subject: registerUser._id
             };
-            let token = jwt.sign(payload, 'secretKey');
+            let token = jwt.sign(payload, SECRET_KEY);
 
-            res.status(200).send({token});
+            res.status(200).send({
+                token
+            });
         }
     });
 
@@ -55,9 +73,11 @@ router.post('/login', (req, res) => {
                 let payload = {
                     subject: user._id
                 };
-                let token = jwt.sign(payload, 'secretKey');
-    
-                res.status(200).send({token});
+                let token = jwt.sign(payload, SECRET_KEY);
+
+                res.status(200).send({
+                    token
+                });
             }
 
         })
@@ -77,7 +97,7 @@ router.get('/events', (req, res) => {
     res.json(events);
 });
 
-router.get('/special', (req, res) => {
+router.get('/special', verifyToken, (req, res) => {
     let events = [];
     for (let i = 0; i < 50; i++) {
         let event = {
