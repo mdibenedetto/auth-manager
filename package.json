@@ -10,7 +10,7 @@
   "devDependencies": {},
   "scripts": {
     "start-node":"node ./server/server.js",
-    "start-ng":"cd ./ngApp && ng serve -o",
+    "start-ng":"cd ./client && ng serve -o",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
