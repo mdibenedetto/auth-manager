@@ -11,8 +11,8 @@
   "devDependencies": {},
   "scripts": {
     "dev": "concurrently \"npm run client\" \"npm run server\"",
-    "client": "cd ./client && ng serve -o",
-    "server": "node ./server/server.js",
+    "client": "npm start  --prefix ./client",
+    "server": "npm run dev  --prefix ./server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

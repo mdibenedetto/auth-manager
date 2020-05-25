@@ -1,6 +1,7 @@
 const express = require("express");
-const { verifyToken, sign } = require("./jwt-manager");
-const db = require("./db-manager");
+const { verifyToken, sign, findEvents } = require("../common/jwt-manager");
+const db = require("../common/db-manager");
+db.connect();
 
 const router = express.Router();
 
@@ -10,7 +11,8 @@ router.get("/", (req, res) => {
 
 router.post("/register", (req, res) => {
   let userData = req.body;
-  db.saveUser(userData, (registerUser) => {
+
+  db.saveUser(userData, ({registerUser}) => {
     let payload = {
       subject: registerUser._id,
     };
@@ -24,48 +26,39 @@ router.post("/register", (req, res) => {
 
 router.post("/login", (req, res) => {
   let userData = req.body;
-  db.findUser((error, user) => {
+
+  db.findUser(userData, ({error, user}) => {
+
     if (error) {
+      console.log("login error " ,error );
+
       res.status(401).send(error);
-    } else {
+    } else if (user) {
+
+      console.log("login user " ,user );
+
       let payload = {
         subject: user._id,
       };
-      let token = jwt.sign(payload, SECRET_KEY);
+      
+      let token = sign(payload);
 
       res.status(200).send({
         token,
       });
+    } else {
+      res.status(500).send("Internal Server error");
     }
   });
 });
 
 router.get("/events", (req, res) => {
-  let events = [];
-
-  for (let i = 0; i < 50; i++) {
-    let event = {
-      _id: i + 1,
-      name: "Auto",
-      desciption: "Lorem ipsum",
-      date: "2018-04-20T18:25:43.511Z",
-    };
-    events.push(event);
-  }
+  let events = db.findEvents();
   res.json(events);
 });
 
 router.get("/special", verifyToken, (req, res) => {
-  let events = [];
-  for (let i = 0; i < 50; i++) {
-    let event = {
-      _id: i + 1,
-      name: "Auto",
-      desciption: "Lorem ipsum",
-      date: "2018-04-20T18:25:43.511Z",
-    };
-    events.push(event);
-  }
+  let events = db.findSpecialEvents();
   res.json(events);
 });
 module.exports = router;
