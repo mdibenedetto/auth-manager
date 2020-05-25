@@ -3,16 +3,19 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const PORT = 5000;
-const api = require('./routes/api');
+const apiRoutes = require('./routes/api-routes');
 const app = express();
+
 app.use(cors());
-
 app.use(bodyParser.json());
-
-app.use('/api', api);
+app.use('/api', apiRoutes);
 
 app.get('/', function (req, res) {
-    res.send('server received a request...'); 
+    res.send('server received a GET request...'); 
+});
+
+app.post('/', function (req, res) {
+    res.send('server received a POST request...'); 
 });
 
 app.listen(PORT, function () {

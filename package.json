@@ -4,13 +4,15 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "mongoose": "^5.0.11",
-    "cors": "^2.8.4"
+    "concurrently": "^5.2.0",
+    "cors": "^2.8.4",
+    "mongoose": "^5.0.11"
   },
   "devDependencies": {},
   "scripts": {
-    "start-node":"node ./server/server.js",
-    "start-ng":"cd ./client && ng serve -o",
+    "dev": "concurrently \"npm run client\" \"npm run server\"",
+    "client": "cd ./client && ng serve -o",
+    "server": "node ./server/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

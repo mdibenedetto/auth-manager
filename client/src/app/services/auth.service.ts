@@ -8,20 +8,19 @@ export class AuthService {
     private _registerUrk = "http://localhost:5000/api/register";
     private _loginUrk = "http://localhost:5000/api/login";
 
-
-    constructor(private http: HttpClient, private router: Router) {
-
-    }
+    constructor(
+        private http: HttpClient,
+        private router: Router) { }
 
     registerUser(user) {
-        return this.http.post < any > (this._registerUrk, user);
+        return this.http.post<any>(this._registerUrk, user);
     }
 
     loginUser(user) {
-        return this.http.post < any > (this._loginUrk, user);
+        return this.http.post<any>(this._loginUrk, user);
     }
 
-    logoutUser(user) {
+    logoutUser() {
         localStorage.removeItem('token');
         this.router.navigate(['/events']);
     }
