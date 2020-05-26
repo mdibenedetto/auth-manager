@@ -1,6 +1,6 @@
 # init git fot heroku
 cd "$PWD/publish"
-rm -r "$PWD/node_modules"
+rm -r  "$PWD/publish/node_modules"
 # git init
 heroku git:remote -a jwt-token-manager 
 git pull
