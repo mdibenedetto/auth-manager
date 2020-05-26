@@ -1,5 +1,5 @@
 {
-  "name": "auth-manager",
+  "name": "client-session-manager",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -17,13 +17,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/michele2014/auth-manager.git"
+    "url": "git+https://github.com/mdibenedetto/client-session-manager.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/michele2014/auth-manager/issues"
+    "url": "https://github.com/mdibenedetto/client-session-manager/issues"
   },
-  "homepage": "https://github.com/michele2014/auth-manager#readme"
+  "homepage": "https://github.com/mdibenedetto/client-session-manager#readme"
 }
