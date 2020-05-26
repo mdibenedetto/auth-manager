@@ -10,7 +10,7 @@ if [ -d "$PUBLISH_FOLDER" ]; then rm -Rf $PUBLISH_FOLDER; fi
 mkdir -p $PUBLISH_FOLDER
 
 # BUILD Client folder
-npm run build --prefix ./client
+# npm run build --prefix ./client
 # COPY Client folder
 cp -r $CLIENT_FOLDER $PUBLISH_FOLDER/client
 # COPY Server folder

@@ -1,14 +1,14 @@
 # init git fot heroku
 cd "$PWD/publish"
 rm -r  "$PWD/publish/node_modules"
-# git init
+
+git init
 heroku git:remote -a jwt-token-manager 
-git fetch
+ 
 # set heroku repo
 git add .    
 git commit -am "deploy heroku"
-
 git pull
-git push heroku master
+git push -f heroku master
 
-# open  https://jwt-token-manager.herokuapp.com/
+open  https://jwt-token-manager.herokuapp.com/
