@@ -9,7 +9,9 @@
     "mongoose": "^5.0.11",
     "open": "^7.0.4"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  },
   "scripts": {
     "dev": "concurrently \"npm run client\" \"npm run server\"",
     "client": "npm start  --prefix ./client",

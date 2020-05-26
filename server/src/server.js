@@ -1,3 +1,4 @@
+const path = require("path");
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
@@ -6,13 +7,18 @@ const PORT = process.env.PORT || 5000;
 const apiRoutes = require("./routes/api-routes");
 const app = express();
 
-var CLIENT_FOLDER = "/../client";
-var STATIC_FILES = __dirname + CLIENT_FOLDER;
+const CLIENT_FOLDER = "/../client";
+const STATIC_FILES = __dirname + CLIENT_FOLDER;
 app.use("/", express.static(STATIC_FILES + "/"));
 
 app.use(cors());
 app.use(bodyParser.json());
 app.use("/api", apiRoutes);
+
+// NEEDED TO WEB APP ROUTING
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../client/index.html"));
+});
 
 app.get("/", function (req, res) {
   res.send("server received a GET request...");
