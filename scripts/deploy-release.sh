@@ -7,6 +7,6 @@ git fetch
 # set heroku repo
 git add .    
 git commit -am "deploy heroku"
-git push heroku master
+# git push heroku master
 
 # open  https://jwt-token-manager.herokuapp.com/
