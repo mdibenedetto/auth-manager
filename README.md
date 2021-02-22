@@ -1,7 +1,6 @@
-# RealEstateManager
+# Event manager
  
 
-[Demo link](https://jwt-token-manager.herokuapp.com)  
+# References
 
-
-[![Home-Page](./docs/home.png)](https://jwt-token-manager.herokuapp.com)
+https://jwt.io/
